@@ -1,0 +1,5 @@
+,Shift 1 (Morning),Shift 2 (Afternoon),Shift 3 (Evening),Shift 4 (Night),Shift 5 (Graveyard)
+Line A (Assembly),145,152,138,120,110
+Line B (Machining),168,175,160,142,125
+Line C (Fabrication),130,135,128,115,98
+Line D (Packaging),185,190,178,165,150
