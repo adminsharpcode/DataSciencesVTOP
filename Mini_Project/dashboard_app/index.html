@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
+  <title>Data Science Intelligence Dashboard | MACSE502 Lab Mini Projects</title>
+  <meta name="description" content="Applied Data Science Mini Projects & Live Intelligence Dashboards for MACSE502. Student: Vedant Nimkar (26MML0045), VIT Vellore.">
+  <link rel="stylesheet" href="index.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- HEADER -->
+    <header class="app-header">
+      <div class="brand-section">
+        <div class="vit-logo-badge">VIT</div>
+        <div class="brand-info">
+          <h1>Applied Data Science Intelligence Cockpit</h1>
+          <div class="brand-meta">
+            <span><b>Course:</b> MACSE502 (Programming for Data Science)</span>
+            <span>•</span>
+            <span><b>Student:</b> VEDANT NIMKAR (26MML0045)</span>
+            <span>•</span>
+            <span><b>Faculty:</b> Dr. Rajasekhara Babu M (SCOPE)</span>
+            <span class="meta-pill">M.Tech CSE</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="pulse-indicator">
+          <div class="pulse-dot"></div>
+          <span>LIVE TELEMETRY</span>
+        </div>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <span id="themeIcon">☀️</span>
+          <span id="themeText">Light</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- NAVIGATION TABS -->
+    <nav class="tab-nav" role="tablist">
+      <button class="tab-btn active" data-tab="tab-overview">🏢 Master Overview</button>
+      <button class="tab-btn" data-tab="tab-w1">🛒 Week 1: Sales Analytics (Pandas)</button>
+      <button class="tab-btn" data-tab="tab-w2">🚚 Week 2: Fleet Performance (Pandas)</button>
+      <button class="tab-btn" data-tab="tab-w3">🏭 Week 3: Factory SPC Analytics (NumPy)</button>
+      <button class="tab-btn" data-tab="tab-w4">🎓 Week 4: EdTech Success Predictor (EDA)</button>
+      <button class="tab-btn" data-tab="tab-docs">📑 Official Reports & Notebooks</button>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- TAB 0: MASTER OVERVIEW -->
+    <!-- ============================================================ -->
+    <div id="tab-overview" class="tab-content active">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">E-Commerce Portfolio Turnover</div>
+          <div class="kpi-val" id="ov-rev">₹14.29L</div>
+          <div class="kpi-meta positive">↑ 25 SKUs across 5 Retail Sectors</div>
+        </div>
+        <div class="kpi-card emerald">
+          <div class="kpi-title">Active Fleet Health Index</div>
+          <div class="kpi-val" id="ov-fleet">79.2%</div>
+          <div class="kpi-meta positive">↑ 24 Operational Haulage Units</div>
+        </div>
+        <div class="kpi-card amber">
+          <div class="kpi-title">Industrial Process Capability</div>
+          <div class="kpi-val" id="ov-spc">Cp 1.04</div>
+          <div class="kpi-meta warning">Line D Packaging (Benchmark)</div>
+        </div>
+        <div class="kpi-card purple">
+          <div class="kpi-title">Predicted Course Completion</div>
+          <div class="kpi-val" id="ov-edtech">68.0%</div>
+          <div class="kpi-meta positive">Cohort N=100 Learners</div>
+        </div>
+      </div>
+
+      <div class="charts-grid-2x2">
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Curriculum Progression Architecture</span>
+            <span class="chart-badge">WEEKS 1 - 4</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="ovProgressionChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Multi-Domain Analytics Synergy</span>
+            <span class="chart-badge">STACK BREAKDOWN</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="ovStackChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links Card -->
+      <div class="table-card">
+        <div class="chart-header">
+          <span class="chart-title">Academic Submission Dossiers & Direct Access</span>
+          <span class="chart-badge">OFFICIAL VIT TEMPLATE</span>
+        </div>
+        <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:1rem;">
+          Each weekly module implements the complete <b>Mini Project Extension</b> mandated in the official syllabus for advanced learners, 
+          integrating comprehensive data cleaning, statistical linear algebra, and visual decision engines.
+        </p>
+        <div class="controls-group">
+          <a href="docs/26MML0045_PDS_Lab_MiniProject_Only_Report.pdf" target="_blank" class="btn-primary">📄 Open 33-Page Mini Project Report (PDF)</a>
+          <a href="docs/26MML0045_PDS_Lab_MiniProject_W1_to_W4_Covered.pdf" target="_blank" class="btn-secondary">📑 Open 75-Page Complete Dossier (PDF)</a>
+          <a href="docs/26MML0045_PDS_Lab_MiniProject_Only_Report.docx" download class="btn-secondary">📥 Download Word (.docx)</a>
+          <button class="btn-secondary" onclick="document.querySelector('[data-tab=tab-w1]').click()">Explore Week 1 Dashboard →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TAB 1: WEEK 1 - E-COMMERCE SALES BI -->
+    <!-- ============================================================ -->
+    <div id="tab-w1" class="tab-content">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">Gross Revenue (Filtered)</div>
+          <div class="kpi-val" id="w1-kpi-rev">₹14,29,000</div>
+          <div class="kpi-meta positive">Portfolio Total</div>
+        </div>
+        <div class="kpi-card emerald">
+          <div class="kpi-title">Total Units Sold</div>
+          <div class="kpi-val" id="w1-kpi-units">1,898</div>
+          <div class="kpi-meta positive">Avg Order Velocity</div>
+        </div>
+        <div class="kpi-card amber">
+          <div class="kpi-title">Mean SKU Sales Value</div>
+          <div class="kpi-val" id="w1-kpi-avg">₹57,160</div>
+          <div class="kpi-meta">Benchmark Threshold</div>
+        </div>
+        <div class="kpi-card purple">
+          <div class="kpi-title">Premium SKUs (>₹75k)</div>
+          <div class="kpi-val" id="w1-kpi-prem">7</div>
+          <div class="kpi-meta positive">Top Tier Margin Drivers</div>
+        </div>
+      </div>
+
+      <!-- Controls Toolbar -->
+      <div class="toolbar-card">
+        <div class="controls-group">
+          <div class="control-item">
+            <label for="w1-cat-select">Category:</label>
+            <select id="w1-cat-select" class="custom-select">
+              <option value="ALL">All Merchandise Classes</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Home Appliances">Home Appliances</option>
+              <option value="Grocery">Grocery</option>
+              <option value="Footwear">Footwear</option>
+            </select>
+          </div>
+          <div class="control-item">
+            <label for="w1-min-price">Min Sales (₹):</label>
+            <input type="range" id="w1-min-price" min="20000" max="90000" step="5000" value="20000">
+            <span id="w1-min-price-val" class="slider-val-badge">₹20,000</span>
+          </div>
+          <div class="control-item">
+            <label for="w1-sort-select">Sort By:</label>
+            <select id="w1-sort-select" class="custom-select">
+              <option value="sales-desc">Sales Amount (High to Low)</option>
+              <option value="sales-asc">Sales Amount (Low to High)</option>
+              <option value="units-desc">Units Sold (High to Low)</option>
+              <option value="rating-desc">Rating (High to Low)</option>
+            </select>
+          </div>
+        </div>
+        <button id="w1-reset-btn" class="btn-secondary">↺ Reset Filters</button>
+      </div>
+
+      <!-- 4 Charts -->
+      <div class="charts-grid-2x2">
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Top 10 Products by Sales Turnover (₹ '000)</span>
+            <span class="chart-badge">PARETO RANKING</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w1TopProductsChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Category Revenue Contribution Share</span>
+            <span class="chart-badge">MARKET SHARE</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w1CategoryShareChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Quarterly Revenue Progression Matrix</span>
+            <span class="chart-badge">TEMPORAL TREND</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w1QuarterlyChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Rating vs. Sales Turnover (Bubble Size = Units)</span>
+            <span class="chart-badge">PRICE ELASTICITY</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w1RatingScatterChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-card">
+        <div class="chart-header">
+          <span class="chart-title">Interactive Product Performance Audit Register</span>
+          <span class="chart-badge" id="w1-table-count">25 Products</span>
+        </div>
+        <table class="data-table" id="w1-table">
+          <thead>
+            <tr>
+              <th>SKU ID</th>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Sales (₹)</th>
+              <th>Units Sold</th>
+              <th>Customer Rating</th>
+              <th>Quarter</th>
+              <th>Tier</th>
+            </tr>
+          </thead>
+          <tbody><!-- Injected via JS --></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TAB 2: WEEK 2 - FLEET PERFORMANCE & TELEMATICS -->
+    <!-- ============================================================ -->
+    <div id="tab-w2" class="tab-content">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">Active Operational Fleet</div>
+          <div class="kpi-val" id="w2-kpi-count">24 Units</div>
+          <div class="kpi-meta positive">4 Purged (Missing Keys)</div>
+        </div>
+        <div class="kpi-card emerald">
+          <div class="kpi-title">Fleet Mean Fuel Burn</div>
+          <div class="kpi-val" id="w2-kpi-fuel">33.3 L/100km</div>
+          <div class="kpi-meta">Imputed & Calibrated</div>
+        </div>
+        <div class="kpi-card amber">
+          <div class="kpi-title">Total Fuel Outlay (INR)</div>
+          <div class="kpi-val" id="w2-kpi-cost">₹28.05L</div>
+          <div class="kpi-meta">@ ₹96.50/L Standard Tariff</div>
+        </div>
+        <div class="kpi-card rose">
+          <div class="kpi-title">Critical Overhaul Alerts</div>
+          <div class="kpi-val" id="w2-kpi-alerts">5 Trucks</div>
+          <div class="kpi-meta negative">Risk Score ≥ 0.70</div>
+        </div>
+      </div>
+
+      <!-- Controls Toolbar -->
+      <div class="toolbar-card">
+        <div class="controls-group">
+          <div class="control-item">
+            <label for="w2-route-select">Filter Route:</label>
+            <select id="w2-route-select" class="custom-select">
+              <option value="ALL">All Transport Corridors</option>
+              <option value="Route-West">Route-West</option>
+              <option value="Corridor-Express">Corridor-Express</option>
+              <option value="Route-North">Route-North</option>
+              <option value="Route-East">Route-East</option>
+              <option value="Route-South">Route-South</option>
+            </select>
+          </div>
+          <div class="control-item">
+            <label for="w2-ineff-slider">Inefficiency Threshold (Norm):</label>
+            <input type="range" id="w2-ineff-slider" min="0.50" max="0.90" step="0.05" value="0.70">
+            <span id="w2-ineff-slider-val" class="slider-val-badge">0.70</span>
+          </div>
+        </div>
+        <button id="w2-simulate-diag-btn" class="btn-primary">⚡ Run Live Telematics Scan</button>
+      </div>
+
+      <!-- 4 Charts -->
+      <div class="charts-grid-2x2">
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Fleet Fuel Consumption Distribution & Threshold</span>
+            <span class="chart-badge">HISTOGRAM</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w2FuelDistChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Route-Wise Mean Fuel Burn & Cost / KM</span>
+            <span class="chart-badge">ENERGY AUDIT</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w2RouteBarChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Predictive Maintenance Risk vs. Fuel Consumption</span>
+            <span class="chart-badge">TRIAGE SCATTER</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w2RiskScatterChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Fleet Maintenance Urgency Triage</span>
+            <span class="chart-badge">STATUS BREAKDOWN</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w2TriageDonutChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-card">
+        <div class="chart-header">
+          <span class="chart-title">Fleet Maintenance Dispatch & Risk Triage Manifest</span>
+          <span class="chart-badge" id="w2-table-count">24 Trucks</span>
+        </div>
+        <table class="data-table" id="w2-table">
+          <thead>
+            <tr>
+              <th>Vehicle ID</th>
+              <th>Assigned Route</th>
+              <th>Fuel (L/100km)</th>
+              <th>Normalized Fuel</th>
+              <th>Engine Hours</th>
+              <th>Trip Distance (KM)</th>
+              <th>Risk Score</th>
+              <th>Triage Action</th>
+            </tr>
+          </thead>
+          <tbody><!-- Injected via JS --></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TAB 3: WEEK 3 - FACTORY PRODUCTION & SPC -->
+    <!-- ============================================================ -->
+    <div id="tab-w3" class="tab-content">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">Factory Mean Output</div>
+          <div class="kpi-val" id="w3-kpi-mean">145.5</div>
+          <div class="kpi-meta">Units per Shift</div>
+        </div>
+        <div class="kpi-card emerald">
+          <div class="kpi-title">Benchmark Capability (Cp)</div>
+          <div class="kpi-val" id="w3-kpi-cp">1.12</div>
+          <div class="kpi-meta positive">Line C Fabrication (Capable)</div>
+        </div>
+        <div class="kpi-card amber">
+          <div class="kpi-title">Shift 5 (Graveyard) Deficit</div>
+          <div class="kpi-val" id="w3-kpi-bottleneck">-25.9%</div>
+          <div class="kpi-meta warning">Fatigue Bottleneck Detected</div>
+        </div>
+        <div class="kpi-card purple">
+          <div class="kpi-title">Total Effective Output</div>
+          <div class="kpi-val" id="w3-kpi-eff">2,606.8</div>
+          <div class="kpi-meta">Adjusted Nominal</div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="toolbar-card">
+        <div class="controls-group">
+          <div class="control-item">
+            <label for="w3-line-select">Inspect Line:</label>
+            <select id="w3-line-select" class="custom-select">
+              <option value="ALL">All Production Lines (A, B, C, D)</option>
+              <option value="0">Line A (Assembly)</option>
+              <option value="1">Line B (Machining)</option>
+              <option value="2">Line C (Fabrication)</option>
+              <option value="3">Line D (Packaging)</option>
+            </select>
+          </div>
+          <div class="control-item">
+            <label for="w3-target-slider">Target Output (USL/LSL Window):</label>
+            <input type="range" id="w3-target-slider" min="140" max="220" step="5" value="195">
+            <span id="w3-target-slider-val" class="slider-val-badge">195 Units</span>
+          </div>
+        </div>
+        <button id="w3-shift-sim-btn" class="btn-primary">⚙️ Simulate Next 5-Shift Cycle</button>
+      </div>
+
+      <!-- 4 Charts -->
+      <div class="charts-grid-2x2">
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">2D Production Heatmap: Line vs. Operational Shift</span>
+            <span class="chart-badge">MATRIX VISUALIZATION</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w3HeatmapChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Gross Output vs. Machine-Efficiency Adjusted Output</span>
+            <span class="chart-badge">HADAMARD PRODUCT</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w3GrossVsEffChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Statistical Process Control (SPC): Line Means & Control Limits</span>
+            <span class="chart-badge">UCL / LCL BOUNDS</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w3SpcChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Machine Mechanical & Thermal Strain Risk Matrix</span>
+            <span class="chart-badge">PREDICTIVE MAINTENANCE</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w3StrainChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-card">
+        <div class="chart-header">
+          <span class="chart-title">Production Line Capability & Variance Audit</span>
+          <span class="chart-badge">SPC SPECIFICATIONS</span>
+        </div>
+        <table class="data-table" id="w3-table">
+          <thead>
+            <tr>
+              <th>Line Name</th>
+              <th>Gross Output</th>
+              <th>Effective Output</th>
+              <th>Efficiency Loss</th>
+              <th>Mean / Shift</th>
+              <th>Std Dev (&sigma;)</th>
+              <th>Capability (Cp)</th>
+              <th>Quality Status</th>
+            </tr>
+          </thead>
+          <tbody><!-- Injected via JS --></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TAB 4: WEEK 4 - EDTECH STUDENT SUCCESS PREDICTOR -->
+    <!-- ============================================================ -->
+    <div id="tab-w4" class="tab-content">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">Active Student Cohort</div>
+          <div class="kpi-val" id="w4-kpi-n">100 Learners</div>
+          <div class="kpi-meta">Telemetry Ingested</div>
+        </div>
+        <div class="kpi-card emerald">
+          <div class="kpi-title">Course Completion Rate</div>
+          <div class="kpi-val" id="w4-kpi-comp">68.0%</div>
+          <div class="kpi-meta positive">Ground Truth Verified</div>
+        </div>
+        <div class="kpi-card amber">
+          <div class="kpi-title">Primary Completion Driver</div>
+          <div class="kpi-val" id="w4-kpi-driver">Attendance</div>
+          <div class="kpi-meta positive">Pearson r = +0.636</div>
+        </div>
+        <div class="kpi-card rose">
+          <div class="kpi-title">High-Risk Learners</div>
+          <div class="kpi-val" id="w4-kpi-risk">51 Students</div>
+          <div class="kpi-meta negative">Prob &lt; 0.40 (Critical)</div>
+        </div>
+      </div>
+
+      <!-- Real-Time Interactive Student Success Calculator -->
+      <div class="simulator-box">
+        <div class="chart-header">
+          <span class="chart-title">Interactive Individual Student Success & Risk Calculator</span>
+          <span class="chart-badge">LIVE SIGMOID PREDICTOR</span>
+        </div>
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1rem;">
+          Adjust the telemetry sliders below to simulate a learner profile. The engine immediately computes the 
+          <b>Composite Learner Engagement Index (CLEI)</b>, maps it on the calibrated logistic decision curve, and triggers prescriptive academic interventions.
+        </p>
+
+        <div class="slider-group">
+          <div class="slider-item">
+            <div class="slider-header">
+              <span>Weekly Study Hours:</span>
+              <span id="sim-sh-val" class="slider-val-badge">14.0 hrs</span>
+            </div>
+            <input type="range" id="sim-sh" min="2" max="45" step="0.5" value="14">
+          </div>
+
+          <div class="slider-item">
+            <div class="slider-header">
+              <span>Quiz Score (%):</span>
+              <span id="sim-quiz-val" class="slider-val-badge">65.0%</span>
+            </div>
+            <input type="range" id="sim-quiz" min="15" max="100" step="1" value="65">
+          </div>
+
+          <div class="slider-item">
+            <div class="slider-header">
+              <span>Attendance Rate (%):</span>
+              <span id="sim-att-val" class="slider-val-badge">80.0%</span>
+            </div>
+            <input type="range" id="sim-att" min="40" max="100" step="1" value="80">
+          </div>
+
+          <div class="slider-item">
+            <div class="slider-header">
+              <span>LMS Clicks / Interactions:</span>
+              <span id="sim-int-val" class="slider-val-badge">38 actions</span>
+            </div>
+            <input type="range" id="sim-int" min="5" max="90" step="1" value="38">
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.25); padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-color); flex-wrap:wrap; gap:1rem;">
+          <div>
+            <span style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Calculated CLEI Score:</span>
+            <div id="sim-clei-res" style="font-size:1.6rem; font-weight:800; color:var(--accent-blue); font-family:var(--font-mono);">54.2 / 100</div>
+          </div>
+          <div>
+            <span style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Predicted Completion Likelihood:</span>
+            <div id="sim-prob-res" style="font-size:1.6rem; font-weight:800; color:var(--accent-emerald); font-family:var(--font-mono);">65.1%</div>
+          </div>
+          <div>
+            <span style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Prescribed Academic Action:</span>
+            <div id="sim-action-res" style="font-size:0.9rem; font-weight:600; color:var(--text-primary); max-width:380px;">Normal Academic Tracking; Voluntary Peer Discussion</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 4 Cohort Filter Toolbar -->
+      <div class="toolbar-card">
+        <div class="controls-group">
+          <div class="control-item">
+            <label for="w4-risk-select">Filter by Risk Tier:</label>
+            <select id="w4-risk-select" class="custom-select">
+              <option value="ALL">All Cohort Learners (N=25)</option>
+              <option value="Low Risk (On Track)">Low Risk (On Track)</option>
+              <option value="Moderate Risk (Monitor)">Moderate Risk (Monitor)</option>
+              <option value="High Risk (Critical)">High Risk (Intervention Needed)</option>
+            </select>
+          </div>
+          <div class="control-item">
+            <label for="w4-min-study">Min Study Hours:</label>
+            <input type="range" id="w4-min-study" min="0" max="20" step="1" value="0">
+            <span id="w4-min-study-val" class="slider-val-badge">0 hrs</span>
+          </div>
+          <div class="control-item">
+            <label for="w4-sort-select">Sort By:</label>
+            <select id="w4-sort-select" class="custom-select">
+              <option value="clei-desc">CLEI Score (High to Low)</option>
+              <option value="clei-asc">CLEI Score (Low to High)</option>
+              <option value="quiz-desc">Quiz Score (High to Low)</option>
+              <option value="study-desc">Study Hours (High to Low)</option>
+              <option value="att-desc">Attendance (High to Low)</option>
+            </select>
+          </div>
+        </div>
+        <button id="w4-reset-btn" class="btn-secondary">↺ Reset Cohort Filter</button>
+      </div>
+
+      <!-- 4 Charts -->
+      <div class="charts-grid-2x2">
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Inter-Feature Pearson Correlation Rankings</span>
+            <span class="chart-badge">FEATURE IMPORTANCE</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w4CorrChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Score Distribution by Completion Status (Violin Representation)</span>
+            <span class="chart-badge">BIMODAL SPREAD</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w4ViolinChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Calibrated Logistic Completion Probability Decision Curve</span>
+            <span class="chart-badge">SIGMOID FUNCTION</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w4LogisticChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Cohort Retention Risk Segmentation Distribution</span>
+            <span class="chart-badge">EARLY-WARNING TRIAGE</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="w4RiskDonutChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-card">
+        <div class="chart-header">
+          <span class="chart-title">Learner Behavioral Telemetry & Prescriptive Action Roster</span>
+          <span class="chart-badge">SAMPLE PROFILES</span>
+        </div>
+        <table class="data-table" id="w4-table">
+          <thead>
+            <tr>
+              <th>Student ID</th>
+              <th>Study Hours</th>
+              <th>Quiz Score</th>
+              <th>Attendance</th>
+              <th>CLEI Score</th>
+              <th>Success Prob</th>
+              <th>Risk Tier</th>
+              <th>Prescribed Academic Intervention</th>
+            </tr>
+          </thead>
+          <tbody><!-- Injected via JS --></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TAB 5: REPORTS & NOTEBOOKS -->
+    <!-- ============================================================ -->
+    <div id="tab-docs" class="tab-content">
+      <div class="downloads-grid">
+        <div class="resource-card" style="border: 1px solid rgba(56, 189, 248, 0.4); box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);">
+          <div>
+            <div class="meta-pill" style="display:inline-block; margin-bottom:0.5rem; background:rgba(56,189,248,0.2); color:#38bdf8; border:1px solid rgba(56,189,248,0.4); padding:3px 10px; border-radius:12px; font-weight:700; font-size:0.75rem;">⭐ NEW: DEDICATED MINI PROJECT ONLY REPORT (33 PAGES)</div>
+            <div class="resource-title" style="font-size:1.15rem; font-weight:700; margin:0.3rem 0;">Integrated Mini Project: Multi-Domain Data Analytics Suite (33 Pages)</div>
+            <div class="resource-desc">
+              Standalone, dedicated Mini Project submission formatted in strict compliance with the VIT 22-row table template and circular SmartArt photo cover. Contains full 25-row datasets for all 4 domains, 12 built-in function specifications, 18 mathematical algorithmic steps, ~550 lines of modular Python source code, and 8 high-resolution 4-panel visual dashboard figures with comprehensive empirical explanations.
+            </div>
+          </div>
+          <div class="controls-group" style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <a href="docs/26MML0045_PDS_Lab_MiniProject_Only_Report.pdf" target="_blank" class="btn-primary" style="text-decoration:none; padding:8px 16px; border-radius:6px; background:#0284c7; color:white; font-weight:600; font-size:0.85rem;">📄 Open Dedicated PDF (33 Pages)</a>
+            <a href="docs/26MML0045_PDS_Lab_MiniProject_Only_Report.docx" download class="btn-secondary" style="text-decoration:none; padding:8px 16px; border-radius:6px; background:rgba(255,255,255,0.1); color:white; font-weight:600; font-size:0.85rem; border:1px solid rgba(255,255,255,0.2);">📥 Download Word (.docx)</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <div>
+            <div class="meta-pill" style="display:inline-block; margin-bottom:0.5rem; background:rgba(37,99,235,0.2); color:#60a5fa; border:1px solid rgba(59,130,246,0.3); padding:3px 10px; border-radius:12px; font-weight:700; font-size:0.75rem;">OFFICIAL MASTER CLUBBED SUBMISSION</div>
+            <div class="resource-title" style="font-size:1.15rem; font-weight:700; margin:0.3rem 0;">4-Week Mini Project Comprehensive Clubbed Dossier (75 Pages)</div>
+            <div class="resource-desc">
+              Exhaustive master submission package formatted in strict compliance with the VIT 22-row table template, featuring the official SmartArt cover page with student and faculty photos, hyperlinked index table with true repaginated page numbers, all 4 weekly Mini Project extensions, and the integrated multi-domain suite.
+            </div>
+          </div>
+          <div class="controls-group" style="margin-top:1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <a href="docs/26MML0045_PDS_Lab_MiniProject_W1_to_W4_Covered.pdf" target="_blank" class="btn-primary" style="text-decoration:none; padding:8px 16px; border-radius:6px; background:#2563eb; color:white; font-weight:600; font-size:0.85rem;">📄 Open Master PDF (75 Pages)</a>
+            <a href="docs/26MML0045_PDS_Lab_MiniProject_Comprehensive_Report.docx" download class="btn-secondary" style="text-decoration:none; padding:8px 16px; border-radius:6px; background:rgba(255,255,255,0.1); color:white; font-weight:600; font-size:0.85rem; border:1px solid rgba(255,255,255,0.2);">📥 Download Word (.docx)</a>
+            <a href="docs/26MML0045_PDS_Lab_LA4.pdf" target="_blank" class="btn-secondary" style="text-decoration:none; padding:8px 16px; border-radius:6px; background:rgba(16,185,129,0.15); color:#34d399; font-weight:600; font-size:0.85rem; border:1px solid rgba(16,185,129,0.3);">📋 Official LA4 Master Portfolio (69 Pages)</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <div>
+            <div class="meta-pill" style="display:inline-block; margin-bottom:0.5rem; background:rgba(59,130,246,0.15); color:#60a5fa; padding:3px 10px; border-radius:12px; font-weight:700; font-size:0.75rem;">WEEK 1 MINI PROJECT</div>
+            <div class="resource-title" style="font-size:1.05rem; font-weight:700; margin:0.3rem 0;">Product Sales Analysis & Dynamic Dashboard (Sl. No. 02 EP)</div>
+            <div class="resource-desc">
+              Pandas DataFrame manipulation, high-value filtering (&gt; ₹50,000), regional assignment, category revenue aggregation, and 4-panel visual cockpit.
+            </div>
+          </div>
+          <div class="controls-group" style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <a href="docs/26MML0045_PDS_Lab_W1_SlNo02_EP.pdf" target="_blank" class="btn-primary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:#2563eb; color:white; font-size:0.8rem; font-weight:600;">📄 View Official PDF</a>
+            <a href="docs/26MML0045_PDS_Lab_W1_SlNo02_EP.docx" download class="btn-secondary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:rgba(255,255,255,0.1); color:white; font-size:0.8rem; border:1px solid rgba(255,255,255,0.2);">📥 Word (.docx)</a>
+            <a href="notebooks/Week1_Sales_Analytics_MiniProject.ipynb" download class="btn-secondary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:rgba(255,255,255,0.05); color:#94a3b8; font-size:0.8rem; border:1px solid rgba(255,255,255,0.1);">📓 Jupyter Notebook</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <div>
+            <div class="meta-pill" style="display:inline-block; margin-bottom:0.5rem; background:rgba(16,185,129,0.15); color:#34d399; padding:3px 10px; border-radius:12px; font-weight:700; font-size:0.75rem;">WEEK 2 MINI PROJECT</div>
+            <div class="resource-title" style="font-size:1.05rem; font-weight:700; margin:0.3rem 0;">Fleet Data Cleaning & Performance Monitoring (Sl. No. 04 EP)</div>
+            <div class="resource-desc">
+              Statistical mean imputation, route cleaning, Min-Max normalization [0, 1], and preventive maintenance alerting (&gt; 2,000 engine operating hours).
+            </div>
+          </div>
+          <div class="controls-group" style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <a href="docs/26MML0045_PDS_Lab_W2_SlNo04_EP.pdf" target="_blank" class="btn-primary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:#2563eb; color:white; font-size:0.8rem; font-weight:600;">📄 View Official PDF</a>
+            <a href="docs/26MML0045_PDS_Lab_W2_SlNo04_EP.docx" download class="btn-secondary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:rgba(255,255,255,0.1); color:white; font-size:0.8rem; border:1px solid rgba(255,255,255,0.2);">📥 Word (.docx)</a>
+            <a href="notebooks/Week2_Fleet_Monitoring_MiniProject.ipynb" download class="btn-secondary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:rgba(255,255,255,0.05); color:#94a3b8; font-size:0.8rem; border:1px solid rgba(255,255,255,0.1);">📓 Jupyter Notebook</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <div>
+            <div class="meta-pill" style="display:inline-block; margin-bottom:0.5rem; background:rgba(245,158,11,0.15); color:#fbbf24; padding:3px 10px; border-radius:12px; font-weight:700; font-size:0.75rem;">WEEK 3 MINI PROJECT</div>
+            <div class="resource-title" style="font-size:1.05rem; font-weight:700; margin:0.3rem 0;">Factory Production & Bottleneck Analysis (Sl. No. 06 EP)</div>
+            <div class="resource-desc">
+              NumPy multi-dimensional linear algebra, matrix reshaping (5x4), element-wise Hadamard efficiency product, and shift heatmap analytics.
+            </div>
+          </div>
+          <div class="controls-group" style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <a href="docs/26MML0045_PDS_Lab_W3_SlNo06_EP.pdf" target="_blank" class="btn-primary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:#2563eb; color:white; font-size:0.8rem; font-weight:600;">📄 View Official PDF</a>
+            <a href="docs/26MML0045_PDS_Lab_W3_SlNo06_EP.docx" download class="btn-secondary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:rgba(255,255,255,0.1); color:white; font-size:0.8rem; border:1px solid rgba(255,255,255,0.2);">📥 Word (.docx)</a>
+            <a href="notebooks/Week3_Factory_Production_MiniProject.ipynb" download class="btn-secondary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:rgba(255,255,255,0.05); color:#94a3b8; font-size:0.8rem; border:1px solid rgba(255,255,255,0.1);">📓 Jupyter Notebook</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <div>
+            <div class="meta-pill" style="display:inline-block; margin-bottom:0.5rem; background:rgba(236,72,153,0.15); color:#f472b6; padding:3px 10px; border-radius:12px; font-weight:700; font-size:0.75rem;">WEEK 4 MINI PROJECT</div>
+            <div class="resource-title" style="font-size:1.05rem; font-weight:700; margin:0.3rem 0;">Student Success Prediction & Risk Dashboard (Sl. No. 08 EP)</div>
+            <div class="resource-desc">
+              Logarithmic skewness compression, quiz score tier binning, Pearson correlation ranking, bimodal violin plots, and predictive logistic completion risk modeling.
+            </div>
+          </div>
+          <div class="controls-group" style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <a href="docs/26MML0045_PDS_Lab_W4_SlNo08_EP.pdf" target="_blank" class="btn-primary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:#2563eb; color:white; font-size:0.8rem; font-weight:600;">📄 View Official PDF</a>
+            <a href="docs/26MML0045_PDS_Lab_W4_SlNo08_EP.docx" download class="btn-secondary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:rgba(255,255,255,0.1); color:white; font-size:0.8rem; border:1px solid rgba(255,255,255,0.2);">📥 Word (.docx)</a>
+            <a href="notebooks/Week4_Learning_Analytics_MiniProject.ipynb" download class="btn-secondary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:rgba(255,255,255,0.05); color:#94a3b8; font-size:0.8rem; border:1px solid rgba(255,255,255,0.1);">📓 Jupyter Notebook</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <div>
+            <div class="meta-pill" style="display:inline-block; margin-bottom:0.5rem; background:rgba(139,92,246,0.15); color:#a78bfa; padding:3px 10px; border-radius:12px; font-weight:700; font-size:0.75rem;">INTEGRATED SUITE</div>
+            <div class="resource-title" style="font-size:1.05rem; font-weight:700; margin:0.3rem 0;">Multi-Domain Analytics & Dynamic Dashboard Suite</div>
+            <div class="resource-desc">
+              Standalone comprehensive record unifying all 4 weeks of analytics with 4 high-resolution multi-panel dashboard figures, complete code cells, and formal citations.
+            </div>
+          </div>
+          <div class="controls-group" style="margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <a href="docs/26MML0045_PDS_Lab_MiniProject_W1_to_W4.pdf" target="_blank" class="btn-primary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:#2563eb; color:white; font-size:0.8rem; font-weight:600;">📄 View Official PDF</a>
+            <a href="docs/26MML0045_PDS_Lab_MiniProject_W1_to_W4.docx" download class="btn-secondary" style="text-decoration:none; padding:6px 12px; border-radius:6px; background:rgba(255,255,255,0.1); color:white; font-size:0.8rem; border:1px solid rgba(255,255,255,0.2);">📥 Word (.docx)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+      <p><b>Programming for Data Science Lab (MACSE502)</b> — Mini Project Engineering Suite</p>
+      <p>Vellore Institute of Technology (VIT), Vellore | School of Computer Science and Engineering</p>
+      <p style="margin-top:0.5rem; color:var(--text-muted); font-size:0.75rem;">
+        Developed by <b>VEDANT NIMKAR</b> (Reg No: 26MML0045) under the guidance of <b>Dr. Rajasekhara Babu M</b>. 
+        Ready for continuous deployment on Vercel.
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Main JavaScript App -->
+  <script src="app.js"></script>
+</body>
+</html>
