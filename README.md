@@ -97,6 +97,22 @@ The primary submission document is an exhaustive, 75-page publication-quality do
   * **Logistic Sigmoid Risk Modeling**: Empirical retention curve ($P(Y=1) = \frac{1}{1 + e^{-(-7.5 + 0.85x)}}$) identifying $8.82\text{ hrs/week}$ as the critical retention threshold.
   * **Proactive Advisor Roster**: Automated triage flagging 12 learners for personalized diagnostic tutoring.
 
+### 5. Weeks 9 to 14: Big Data Engineering in Scala (LA-9 & LA-10 Submissions)
+* **Scope**: Functional Programming, Collections, Associative Maps, Case Classes, Numerical Computing with Breeze, Tabular Wrangling with Saddle, High-Precision Arithmetic with Spire, and Interactive Visualization with Vegas & Plotly.Scala.
+* **Laboratory Assessments & Reports**:
+  * [**LA-9 Final Submission Dossier (PDF, 84 Pages)**](Submissions/26MML0045_PDS_Lab_LA9.pdf) | [Word Version](Submissions/26MML0045_PDS_Lab_LA9.docx)
+  * [**LA-10 Master Submission Dossier (PDF, 106 Pages)**](Submissions/26MML0045_PDS_Lab_LA10.pdf) | [Word Version](Submissions/26MML0045_PDS_Lab_LA10.docx)
+  * [**Google Drive Official Cloud Backup**](https://drive.google.com/drive/folders/1W5HRJYRECn4RC9DEbIkF0nfPf6csRZCd?usp=sharing)
+* **Weekly Notebooks**:
+  * [Week 9 (Sl. No. 18 EP): Arrays and Array Operations in Scala](W9_SlNo18_EP.ipynb)
+  * [Week 10 (Sl. No. 19 EP): Collections in Scala: Lists, Sets, and Tuples](W10_SlNo19_EP.ipynb)
+  * [Week 11 (Sl. No. 20 EP): Handling Collisions and Resolving Conflicts in HashMaps](W11_SlNo20_EP.ipynb)
+  * [Week 12 (Sl. No. 21 EP): Advanced Functional Combinators in Scala](W12_SlNo21_EP.ipynb)
+  * [Week 13 (Sl. No. 22 EP): Case Classes and Data Modeling in Scala](W13_SlNo22_EP.ipynb)
+  * [Week 13 (Sl. No. 23 EP): Data Manipulation with Saddle and Vegas Interactive Visualization](W13_SlNo23_EP.ipynb)
+  * [Week 14 (Sl. No. 24 EP): Numerical Computations with Breeze and Plotly.Scala Visualizations](W14_SlNo24_EP.ipynb)
+  * [Week 14 (Sl. No. 25 EP): Statistical Precision with Spire and Saddle with Vegas Visualization](W14_SlNo25_EP.ipynb)
+
 ---
 
 ## 🛠️ Verification & Replication
@@ -118,3 +134,5 @@ jupyter notebook notebooks/Master_MiniProject_Comprehensive_Suite.ipynb
 * **Vedant Nimkar** (Reg. No: `26MML0045`)
 * M.Tech Integrated Data Science / Computer Science & Engineering
 * Vellore Institute of Technology (VIT), Vellore
+* **GitHub**: [@adminsharpcode](https://github.com/adminsharpcode)
+* **Cloud Drive**: [Google Drive Folder](https://drive.google.com/drive/folders/1W5HRJYRECn4RC9DEbIkF0nfPf6csRZCd?usp=sharing)
